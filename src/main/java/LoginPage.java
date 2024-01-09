@@ -32,6 +32,9 @@ public class LoginPage {
     @FindBy(className = "login_password")
     private WebElement passwordsSection;
 
+    public boolean userNameInputFieldIsDisplayed(){
+        return usernameInputField.isDisplayed();
+    }
     public void enterUsername(String usernameValue){
         usernameInputField.sendKeys(usernameValue);
     }

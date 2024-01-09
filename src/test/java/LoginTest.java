@@ -12,22 +12,10 @@ import static java.lang.Thread.sleep;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class LoginTest {
+public class LoginTest extends BaseTest{
 
-    ChromeDriver driver;
 
-    @Before
-    public void setup(){
-        System.setProperty("webdriver.chrome.driver", "/Users/ergrevegvrg/Downloads/chromedriver-mac-arm64-2/chromedriver");
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver = new ChromeDriver();
-        driver.get("https://www.saucedemo.com/");
-    }
-    @After
-    public void tearDown(){
-        driver.quit();
-    }
-    @Test
+/*    @Test
     public void successfulLoginWithoutPO() {
         WebElement usernameInputField =
                 driver.findElement(By.cssSelector("[name=\"user-name\"]"));
@@ -44,7 +32,7 @@ public class LoginTest {
         WebElement inventoryList =
                driver.findElement(By.className("inventory_list"));
        assertTrue(inventoryList.isDisplayed());
-    }
+    }*/
     @Test
     public void successfulLogin() {
         LoginPage loginPage = new LoginPage(driver);
@@ -88,7 +76,22 @@ public class LoginTest {
 
        @Test
        public void successLogout(){
-        //
+        //Login with valid data
+           LoginPage loginPage = new LoginPage(driver);
+           loginPage.enterUsername("standard_user");
+           loginPage.enterPassword("secret_sauce");
+           loginPage.clickOnLoginButton();
+           InventoryPage inventoryPage = new InventoryPage(driver);
+           assertTrue(inventoryPage.inventoryListIsDisplayed());
+           //Navigate to burger menu
+            Header header = new Header(driver);
+            header.clickOnBurgerMenu();
+           //Follow the link Logout
+            SideBar sideBar = new SideBar(driver);
+            sideBar.followTheLogoutLink();
+            //Assert that logout is successful
+           assertTrue(loginPage.userNameInputFieldIsDisplayed());
+
        }
 
 }
