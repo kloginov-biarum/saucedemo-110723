@@ -24,4 +24,51 @@ public class InventoryTest extends BaseTest{
         assertTrue(inventoryPage.allNamesAreNotEmpty());
         //all items' names are started from "Sauce Labs"
     }
+    @Test
+    public void sortByNameAtoZ(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickOnLoginButton();
+        InventoryPage inventoryPage = new InventoryPage(driver);
+        assertTrue(inventoryPage.inventoryListIsDisplayed());
+        inventoryPage.choseSortByNameAtoZ();
+        assertTrue(inventoryPage.checkSortingByNameAtoZ());
+    }
+
+    @Test
+    public void sortByNameZtoA(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickOnLoginButton();
+        InventoryPage inventoryPage = new InventoryPage(driver);
+        assertTrue(inventoryPage.inventoryListIsDisplayed());
+        inventoryPage.choseSortByNameZtoA();
+        assertTrue(inventoryPage.checkSortingByNameZtoA());
+    }
+    @Test
+    public void sortByPriceLowToHigh(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickOnLoginButton();
+        InventoryPage inventoryPage = new InventoryPage(driver);
+        assertTrue(inventoryPage.inventoryListIsDisplayed());
+        inventoryPage.choseSortByPriceLowToHigh();
+        assertTrue(inventoryPage.checkSortingByPriceLowToHigh());
+    }
+
+    @Test
+    public void sortByPriceHighToLow() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.enterUsername("standard_user");
+        loginPage.enterPassword("secret_sauce");
+        loginPage.clickOnLoginButton();
+        InventoryPage inventoryPage = new InventoryPage(driver);
+        assertTrue(inventoryPage.inventoryListIsDisplayed());
+        inventoryPage.choseSortByPriceHighToLow();
+        assertTrue(inventoryPage.checkSortingByPriceHighToLow());
+    }
+
 }

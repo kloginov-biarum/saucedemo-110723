@@ -3,12 +3,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SideBar {
-    WebDriver driver;
+public class SideBar extends BasePage{
+
 
     public SideBar(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+      super(driver);
     }
 
     @FindBy(id = "inventory_sidebar_link")

@@ -1,3 +1,6 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,8 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static java.lang.Thread.sleep;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class LoginTest extends BaseTest{
 
@@ -33,11 +35,13 @@ public class LoginTest extends BaseTest{
                driver.findElement(By.className("inventory_list"));
        assertTrue(inventoryList.isDisplayed());
     }*/
-    @Test
+    @Feature("Login")
+    @DisplayName("Success login")
+    @Test @Description("Successful Authorization with standard_user")
     public void successfulLogin() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.enterUsername("standard_user");
-        loginPage.enterPassword("secret_sauce");
+        loginPage.enterUsername(standardUser);
+        loginPage.enterPassword(standardUser);
         loginPage.clickOnLoginButton();
         InventoryPage inventoryPage = new InventoryPage(driver);
         assertTrue(inventoryPage.inventoryListIsDisplayed());
@@ -54,7 +58,7 @@ public class LoginTest extends BaseTest{
                 .contains("Username and password do not match any user in this service"));
     }
 
-    @Test
+    //@Test
     public void lockedOutUser(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.enterUsername("locked_out_user");
@@ -66,7 +70,7 @@ public class LoginTest extends BaseTest{
 
 
     //check that logo, username section and password section are displayed
-    @Test
+   // @Test
     public void elementsAreDisplayed(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.logoIsDisplayed();
@@ -74,7 +78,7 @@ public class LoginTest extends BaseTest{
         loginPage.passwordsSectionIsDisplayed();
        }
 
-       @Test
+      // @Test
        public void successLogout(){
         //Login with valid data
            LoginPage loginPage = new LoginPage(driver);

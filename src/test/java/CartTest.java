@@ -35,4 +35,9 @@ public class CartTest extends BaseTest{
     public void backpackAddedToCart(){
         //
     }
+
+    @Test
+    public void emptyCart(){
+        //check that cart is empty
+    }
 }

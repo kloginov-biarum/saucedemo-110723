@@ -1,14 +1,17 @@
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
-    WebDriver driver;
+import java.time.Duration;
+
+public class LoginPage extends BasePage{
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     @FindBy(id = "user-name")
@@ -35,16 +38,19 @@ public class LoginPage {
     public boolean userNameInputFieldIsDisplayed(){
         return usernameInputField.isDisplayed();
     }
-    public void enterUsername(String usernameValue){
-        usernameInputField.sendKeys(usernameValue);
+    @Step("Enter username")
+    public void enterUsername(User user){
+        enterTextToElement(user.getUsername(), usernameInputField);
+
     }
 
-    public void enterPassword(String passwordValue){
-        passwordInputField.sendKeys(passwordValue);
+    @Step("Enter password")
+    public void enterPassword(User user){
+     enterTextToElement(user.getPassword(), passwordInputField);
     }
 
     public void clickOnLoginButton(){
-        loginButton.click();
+        clickOnElement(loginButton);
     }
 
     public String getErrorMessageText(){
